@@ -25,7 +25,6 @@ const CustomButton: React.FC<ButtonProps & Props> = ({variant = "contained", col
   const history = useHistory()
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log('cc')
     to ? history.push(to) : props.onClick && props.onClick(e)
   }
 

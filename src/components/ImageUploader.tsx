@@ -109,9 +109,9 @@ const ImageUploader: React.FC<Props & GridProps> = ({ name, onUpload, ...rest })
         container
         xs={12}
         sm={12}
-        md={3}
-        lg={3}
-        xl={3}
+        md={6}
+        lg={6}
+        xl={6}
         direction="column"
         alignItems="center"
         justify="center"

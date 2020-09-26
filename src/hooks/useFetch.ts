@@ -4,6 +4,7 @@ import axios from "axios";
 type FetchOptions = {
   uri: string;
   method: "GET" | "POST" | "PUT" | "DELETE";
+  data?: {}
 };
 
 export default <T>(options: FetchOptions) => {
@@ -20,6 +21,8 @@ export default <T>(options: FetchOptions) => {
           const res = await axios.get(options.uri);
           setRes({ data: res.data, loading: false });
           break;
+        case "POST":
+          await axios.post(options.uri, options.data)
         default:
           return { data: [] };
       }

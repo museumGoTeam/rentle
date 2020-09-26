@@ -89,9 +89,9 @@ const FormContainer: React.FC<Props> = ({
         container
         xs={12}
         sm={12}
-        md={7}
-        lg={7}
-        xl={7}
+        md={12}
+        lg={12}
+        xl={12}
         className={classes.settingItemContainer}
       >
         <Grid item container>
