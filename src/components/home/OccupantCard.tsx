@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
   }),
     avatar: {
         borderRadius: 8,
-        maxHeight: 230
+        height: 245,
+        maxHeight: 245
     },
     address: {
         textTransform: 'lowercase',
@@ -50,7 +51,7 @@ type OccupantCardProps = {
   hasDivider?: boolean
 }
 
-const OccupantCard: React.FC<Occupant & OccupantCardProps> = ({ID,gender, name, surname, email, gsm, avatar, address, nationalRegistry, birthDate, propertyLeased, hasDivider = true}) => {
+const OccupantCard: React.FC<Occupant & OccupantCardProps> = ({id,gender, name, surname, email, gsm, avatar, address, nationalRegistry, birthDate, propertyLeased, hasDivider = true}) => {
   const classes = useStyles({hasDivider})
   return (
     <Grid item container spacing={2} className={classes.root}>
@@ -65,7 +66,7 @@ const OccupantCard: React.FC<Occupant & OccupantCardProps> = ({ID,gender, name, 
             <div className={classes.divider} />
             <Typography variant="body1" className={classes.address}>{`${address.street} ${address.city}, ${address.country}`}</Typography>
             <Typography variant="subtitle1" className={classes.details}>Locataire {propertyLeased.type === "appartement" ? "d'un Appartement" : "d'une Maison"}</Typography>
-            <CustomButton label="Details" style={{alignSelf: "flex-end"}} to={`/Locataires/${ID}`} />
+            <CustomButton label="Details" style={{alignSelf: "flex-end"}} to={`/Locataires/${id}`} />
       </Grid>
     </Grid>
   );

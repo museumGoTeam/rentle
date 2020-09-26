@@ -3,7 +3,6 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography'
 import CardMedia from "./CardMedia";
-import { useHistory } from "react-router-dom";
 import CustomButton from "../CustomButton";
 import { Property } from "../../pages/types";
 
@@ -15,7 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
     image: {
         borderRadius: 8,
-        maxHeight: 230
+        height: 200,
+        maxHeight: 200
     },
     propertyType: {
         fontWeight: "bold",
@@ -48,9 +48,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const PropertyCard: React.FC<Property> = ({ID,image, type, address}) => {
+const PropertyCard: React.FC<Property> = ({id,image, type, address, bedroomCount, size, price, leasedBy}) => {
   const classes = useStyles()
-  const history = useHistory()
+
 
   return (
     <Grid item container spacing={2} className={classes.root}>
@@ -64,11 +64,14 @@ const PropertyCard: React.FC<Property> = ({ID,image, type, address}) => {
             <Typography variant="body1" className={classes.propertyType}>{type}</Typography>
             <Typography variant="h2" className={classes.address}>{`${address.street} ${address.city}, ${address.country}`} </Typography>
             <div className={classes.divider} />
+            <Grid item container direction="column" style={{flex: 1}}>
+              <Typography variant="caption">{bedroomCount} chambres - {size} m² - {price} € / mois </Typography>
+            </Grid>
+            {leasedBy && <Typography variant="caption">Loué par {leasedBy.name} {leasedBy.surname}</Typography>}
             <Grid item container justify="flex-end">
               <CustomButton label="Modifier" color="secondary" style={{marginRight: 8}} />
-              <CustomButton label="Details" to={`/${type === "maison" ? "Maisons": "Appartements"}/${ID}`} />
+              <CustomButton label="Details" to={`/${type === "maison" ? "Maisons": "Appartements"}/${id}`} />
             </Grid>
-
       </Grid>
     </Grid>
   );

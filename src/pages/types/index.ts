@@ -1,5 +1,5 @@
 export interface Property {
-    ID: string,
+    id: string,
     occupantID?: string | undefined,
     floorNumber: number,
     type: string,
@@ -17,7 +17,7 @@ export interface Property {
 
 
 export interface Occupant extends Person {
-    ID: string,
+    id: string,
     propertyID: string,
     nationalRegistry: string,
     birthDate: string,
@@ -27,7 +27,7 @@ export interface Occupant extends Person {
 
 
 export interface Lease {
-    ID: string,
+    id: string,
     propertyID: string,
     occupantID: string,
     beginDate: string,
