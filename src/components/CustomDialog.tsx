@@ -25,9 +25,6 @@ const CustomDialog: React.FC<CustomDialogProps> = ({open, handleClose, children}
                 <Button onClick={handleClose} color="primary">
                     Fermer
                 </Button>
-                <Button onClick={handleClose} color="primary">
-                    Valider
-                </Button>
             </DialogActions>
       </Dialog>
         </div>
