@@ -6,11 +6,12 @@ type NumberInputProps = {
     variant?: "outlined" | "filled" | "standard",
     label: string, 
     name: string,
-    value: string | number
+    value: string | number,
+    fullWidth?: boolean,
     onChange: (value: number | string, name: string) => void
 }
 
-const NumberInput: React.FC<NumberInputProps> = ({variant = "outlined", label, name, value, onChange}) => {
+const NumberInput: React.FC<NumberInputProps> = ({variant = "outlined", label, name, value, fullWidth, onChange}) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
@@ -21,7 +22,7 @@ const NumberInput: React.FC<NumberInputProps> = ({variant = "outlined", label, n
     }
 
     return (
-        <TextField type="number"  variant="outlined" name={name} label={label} value={value} onChange={handleChange} />
+        <TextField type="number"  variant="outlined" name={name} label={label} value={value} onChange={handleChange} fullWidth/>
     )
 }
 

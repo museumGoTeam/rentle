@@ -8,16 +8,17 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 type CustomDialogProps = {
+    title: string,
     open: boolean,
     handleClose: () => void,
 }
 
-const CustomDialog: React.FC<CustomDialogProps> = ({open, handleClose, children}) => {
+const CustomDialog: React.FC<CustomDialogProps> = ({title, open, handleClose, children}) => {
 
     return (
         <div>
         <Dialog open={open} onClose={handleClose} maxWidth="xl">
-            <DialogTitle>Inserez un nouveau bien</DialogTitle>
+            <DialogTitle>{title}</DialogTitle>
             <DialogContent>
                 {children}
             </DialogContent>

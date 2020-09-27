@@ -40,6 +40,9 @@ export interface Lease {
     isFirstMonthPaid: boolean,
     property: Property
     occupant: Occupant
+    gasMeter: Meter,
+    waterMeter: Meter,
+    electricityMeter: Meter
 
 }
 
@@ -55,6 +58,10 @@ export interface Person {
     address: Location
 }
 
+export interface Meter {
+    beginValue: number,
+    endValue?: number
+}
 
 export interface Location {
     street: string,

@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect  } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
-import InsertProperty from "./pages/InsertProperty";
+import InsertOccupant from "./pages/InsertOccupant";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/properties" />} />
             <Route exact path="/:entity" component={Home} />
-            <Route exact path="/properties/new" component={InsertProperty} />
+            <Route exact path="/property/newOccupant/:id" component={InsertOccupant} />
           </Switch>
         </Layout>
       </BrowserRouter>

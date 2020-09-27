@@ -47,8 +47,10 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-
-const PropertyCard: React.FC<Property> = ({id,image, type, address, bedroomCount, size, price, leasedBy}) => {
+type PropertyCardProps = {
+  selectable?: boolean,
+}
+const PropertyCard: React.FC<PropertyCardProps & Property> = ({id,image, type, address, bedroomCount, size, price, leasedBy, selectable}) => {
   const classes = useStyles()
 
 
@@ -69,8 +71,8 @@ const PropertyCard: React.FC<Property> = ({id,image, type, address, bedroomCount
             </Grid>
             {leasedBy && <Typography variant="caption">Loué par {leasedBy.name} {leasedBy.surname}</Typography>}
             <Grid item container justify="flex-end">
-              <CustomButton label="Modifier" color="secondary" style={{marginRight: 8}} />
-              <CustomButton label="Details" to={`/${type === "maison" ? "Maisons": "Appartements"}/${id}`} />
+              <CustomButton label="Details" color="secondary" to={`/${type === "maison" ? "Maisons": "Appartements"}/${id}`} />
+              <CustomButton label="Ajouter un locataire"  to={`/property/newOccupant/${id}`} style={{marginLeft: 8}}/>
             </Grid>
       </Grid>
     </Grid>

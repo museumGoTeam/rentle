@@ -2,13 +2,13 @@ import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import ImageUploader from "../components/ImageUploader";
-import FormContainer from "../components/FormContainer";
-import CustomSelect from "../components/CustomSelect";
-import CustomButton from "../components/CustomButton";
-import { LocationForm, PropertyForm } from "./types/form";
+import ImageUploader from "../ImageUploader";
+import FormContainer from "../FormContainer";
+import CustomSelect from "../CustomSelect";
+import CustomButton from "../CustomButton";
+import { LocationForm, PropertyForm } from "../../pages/types/form";
 import axios from "axios";
-import NumberInput from "../components/NumberInput";
+import NumberInput from "../NumberInput";
 
 const useStyles = makeStyles((theme) => ({
   line: {

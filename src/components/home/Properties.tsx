@@ -4,7 +4,10 @@ import PropertyCard from './PropertyCard'
 import useFetch from '../../hooks/useFetch'
 
 
-const Properties = () => {
+type PropertiesProps = {
+  selectable?: boolean
+}
+const Properties: React.FC<PropertiesProps>  = ({selectable}) => {
 
   const {data, loading} = useFetch<Property>({uri: "http://localhost:5000/api/properties/", method: "GET"})
   
@@ -12,7 +15,7 @@ const Properties = () => {
     if (!data) return <div>Erreur de communication avec le serveur</div>
 
     return <div>
-        {data.map(property => <PropertyCard key={property.id} {...property} />)}
+        {data.map(property => <PropertyCard key={property.id} {...property} selectable/>)}
     </div>
 }
 
