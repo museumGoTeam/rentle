@@ -33,7 +33,7 @@ const InsertOccupant = () => {
   };
 
   return (
-    <form style={{ width: 800 }}>
+    <form style={{ width: '80%', margin: 'auto', paddingTop: 32}}>
       <CustomStepper
         steps={[
           "Ajout d'un locataire",

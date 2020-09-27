@@ -4,6 +4,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Grid from "@material-ui/core/Grid";
 import CustomButton from "./CustomButton";
+import { useHistory } from "react-router-dom";
 
 type CustomStepperProps = {
   steps: string[];
@@ -15,6 +16,7 @@ type CustomStepperProps = {
 const CustomStepper: React.FC<CustomStepperProps> = ({ steps, stepNodes, onSubmit }) => {
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
+  const history = useHistory()
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
@@ -28,6 +30,7 @@ const CustomStepper: React.FC<CustomStepperProps> = ({ steps, stepNodes, onSubmi
 
   const handlePrevious = () => {
     setActiveStep((prevState) => prevState - 1);
+    if (activeStep === 0) history.push("/")
   };
 
 

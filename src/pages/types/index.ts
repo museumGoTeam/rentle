@@ -12,6 +12,7 @@ export interface Property {
     image: string,
     address: Location,
     leasedBy?: Occupant | undefined
+    lease?: Lease | undefined
 
 }
 

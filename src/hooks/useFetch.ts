@@ -8,8 +8,8 @@ type FetchOptions = {
 };
 
 export default <T>(options: FetchOptions) => {
-  const [res, setRes] = React.useState<{ data: T[]; loading: boolean }>({
-    data: [],
+  const [res, setRes] = React.useState<{ data: T | undefined; loading: boolean }>({
+    data: undefined,
     loading: true,
   });
 
