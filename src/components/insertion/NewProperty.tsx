@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InsertProperty = () => {
+const NewProperty = () => {
   const classes = useStyles();
   const [form, setForm] = React.useState<PropertyForm>({
     type: "maison",
@@ -208,4 +208,4 @@ const InsertProperty = () => {
   );
 };
 
-export default InsertProperty;
+export default NewProperty;

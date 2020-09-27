@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import CustomButton from "../components/CustomButton";
 import Properties from "../components/home/Properties";
 import Occupants from "../components/home/Occupants";
-import InsertProperty from "../components/insertion/InsertProperty";
+import NewProperty from "../components/insertion/NewProperty";
 import classes from "*.module.css";
 import CustomDialog from "../components/CustomDialog";
 
@@ -36,7 +36,7 @@ const Home = () => {
     <Grid container direction="column">
       <PropertyFilters />
       <CustomDialog open={openInsertContainer} handleClose={() => setOpenInsertContainer(false)} title={entity === "Locataires" ? "Insérer un nouveau locataire" : "Insérer un nouveau bien"}>
-        <InsertProperty />
+        <NewProperty />
       </CustomDialog>
       <Grid item container justify="flex-end" style={{marginBottom: 32}}>
       {openInsertContainer && <CustomButton label="Anuller"  onClick={cancelInsertion} className={classes.cancelButton}/> }
