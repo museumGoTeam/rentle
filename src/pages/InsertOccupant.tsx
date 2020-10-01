@@ -1,4 +1,6 @@
 import React from "react";
+import IconButton from '@material-ui/core/IconButton'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { initialGuarantorForm, initialLeaeForm, initialOccupantForm } from "../constants/initstate";
 import { GuarantorForm, LeaseForm, OccupantForm } from "./types/form";
 import axios from 'axios'
@@ -6,15 +8,19 @@ import CustomStepper from "../components/CustomStepper";
 import NewGurantor from "../components/insertion/NewGurantor";
 import Writelease from "../components/insertion/WriteLease";
 import NewOccupant from "../components/insertion/NewOccupant";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 
 const InsertOccupant = () => {
   const {id} = useParams<{id: string}>()
+  const history = useHistory()
   const [occupantForm, setOccupantForm] = React.useState<OccupantForm>({...initialOccupantForm, propertyID: id});
   const [guarantorForm, setGuarantorForm] = React.useState<GuarantorForm>(initialGuarantorForm)
   const [leaseForm, setLeaseForm] = React.useState<LeaseForm>(initialLeaeForm)
 
+  const returnToHomePage = () => {
+    history.push('/')
+  }
   const handleOccupantChange = (value: string | number | Object, name: string) => {
     setOccupantForm({ ...occupantForm, [name]: value });
   };
@@ -34,6 +40,9 @@ const InsertOccupant = () => {
 
   return (
     <form style={{ width: '80%', margin: 'auto', paddingTop: 32}}>
+      <IconButton onClick={returnToHomePage}>
+        <ArrowBackIcon />
+      </IconButton>
       <CustomStepper
         steps={[
           "Ajout d'un locataire",

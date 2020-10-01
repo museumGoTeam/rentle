@@ -34,3 +34,20 @@ export default <T>(options: FetchOptions) => {
 
   return { data: res.data, loading: res.loading };
 };
+
+
+export const useLazyFetch = <T>(options: FetchOptions): [() => Promise<void>, {data: T | undefined, loading: boolean}] => {
+  const [res, setRes] = React.useState<{data: T | undefined, loading: boolean}>({data: undefined, loading: true})
+
+  return [async () => {
+    switch(options.method) {
+      case "GET":
+        const res = await axios.get(options.uri)
+        setRes({data: res.data, loading: false})
+        break;
+    }
+  }, {data: res.data, loading: res.loading}]
+
+
+
+}

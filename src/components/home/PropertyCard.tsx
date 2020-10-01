@@ -8,8 +8,8 @@ import { Property } from "../../pages/types";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  root: ({ modifiable }: { modifiable: boolean | undefined }) => ({
-    borderTop: !modifiable ? `1px solid ${theme.palette.grey[300]}` : "none",
+  root: ({ hasDivider, isModifiable }: { hasDivider: boolean, isModifiable: boolean | undefined }) => ({
+    borderTop: !isModifiable && hasDivider ? `1px solid ${theme.palette.grey[300]}` : "none",
     paddingTop: 16,
     paddingBottom: 32,
   }),
@@ -52,13 +52,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type PropertyCardProps = {
-  modifiable?: boolean;
+  hasDivider?: boolean;
+  isModifiable?: boolean
 };
 const PropertyCard: React.FC<PropertyCardProps & Property> = ({
-  modifiable,
+  hasDivider = true,
+  isModifiable,
   ...property
 }) => {
-  const classes = useStyles({ modifiable });
+  const classes = useStyles({ hasDivider, isModifiable });
   const {
     id,
     type,
@@ -116,7 +118,7 @@ const PropertyCard: React.FC<PropertyCardProps & Property> = ({
           </Typography>
         )}
         <Grid item container justify="flex-end">
-          {modifiable ? (
+          {isModifiable ? (
             <CustomButton label="Modifier" color="primary" />
           ) : (
             <CustomButton

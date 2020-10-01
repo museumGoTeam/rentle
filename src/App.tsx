@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import InsertOccupant from "./pages/InsertOccupant";
-import PropertyDetails from "./pages/PropertyDetails";
+import Details from "./pages/Details";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +28,7 @@ const App = () => {
             <Route exact path="/" render={() => <Redirect to="/properties" />} />
             <Route exact path="/:entity" component={Home} />
             <Route exact path="/property/newOccupant/:id" component={InsertOccupant} />
-            <Route exact path="/property/:id" component={PropertyDetails} />
+            <Route exact path={["/property/:id", "/occupant/:id"]} component={Details} />
           </Switch>
         </Layout>
       </BrowserRouter>

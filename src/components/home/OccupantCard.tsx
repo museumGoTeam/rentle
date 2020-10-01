@@ -8,8 +8,8 @@ import CustomButton from "../CustomButton";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  root: ({ hasDivider }: { hasDivider: boolean }) => ({
-    borderTop: hasDivider ? `1px solid ${theme.palette.grey[300]}` : "none",
+  root: ({ hasDivider, isModifiable }: { hasDivider: boolean, isModifiable: boolean | undefined}) => ({
+    borderTop: !isModifiable && hasDivider ? `1px solid ${theme.palette.grey[300]}` : "none",
     paddingTop: 16,
     paddingBottom: 32,
   }),
@@ -49,13 +49,15 @@ const useStyles = makeStyles((theme) => ({
 
 type OccupantCardProps = {
   hasDivider?: boolean;
+  isModifiable?: boolean
 };
 
 const OccupantCard: React.FC<(Occupant | Guarantor) & OccupantCardProps> = ({
   hasDivider = true,
+  isModifiable,
   ...person
 }) => {
-  const classes = useStyles({ hasDivider });
+  const classes = useStyles({ hasDivider, isModifiable });
   const { gender, name, surname, email, gsm, avatar } = person;
   const { street, zipcode, city, country } = person.address;
   const getCivility = () => {
@@ -89,7 +91,9 @@ const OccupantCard: React.FC<(Occupant | Guarantor) & OccupantCardProps> = ({
           {"id" in person && (
             <Typography variant="caption">
               Né{gender.includes("femme") && "e"} le{" "}
-              <span className={classes.detail}>{person.birthDate} (20 ans)</span>
+              <span className={classes.detail}>
+                {person.birthDate} (20 ans)
+              </span>
             </Typography>
           )}
 
@@ -125,7 +129,7 @@ const OccupantCard: React.FC<(Occupant | Guarantor) & OccupantCardProps> = ({
             <CustomButton
               label="Details"
               style={{ alignSelf: "flex-end" }}
-              to={`/Locataires/${person.id}`}
+              to={`/occupant/${person.id}`}
             />
           </Grid>
         )}
