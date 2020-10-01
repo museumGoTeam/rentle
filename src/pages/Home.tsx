@@ -2,12 +2,11 @@ import React from "react";
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Grid from "@material-ui/core/Grid";
 import PropertyFilters from "../components/home/EntityFilters";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CustomButton from "../components/CustomButton";
 import Properties from "../components/home/Properties";
 import Occupants from "../components/home/Occupants";
 import NewProperty from "../components/insertion/NewProperty";
-import classes from "*.module.css";
 import CustomDialog from "../components/CustomDialog";
 
 
@@ -22,7 +21,6 @@ const Home = () => {
   const classes = useStyles()
   const [openInsertContainer, setOpenInsertContainer] = React.useState<boolean>(false)
   const {entity} = useParams<{entity: string}>()
-  const history = useHistory()
 
   const addEntity = () => {
     setOpenInsertContainer(true)

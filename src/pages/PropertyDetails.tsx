@@ -8,8 +8,6 @@ import { Property } from "./types";
 import PropertyCard from "../components/home/PropertyCard";
 import OccupantCard from "../components/home/OccupantCard";
 import CustomButton from "../components/CustomButton";
-import CustomDialog from "../components/CustomDialog";
-import LeaseDetails from "../components/details/LeaseDetails";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -31,7 +29,7 @@ const PropertyDetails = () => {
   return (
     <Grid container direction="column" className={classes.root}>
         <Grid item container justify="center">
-            <CustomButton label="Générer le contrat de bail" onClick={() => setLeaseDetailsOpen(true)}></CustomButton>
+            <CustomButton label="Générer le contrat de bail" onClick={() => setLeaseDetailsOpen(!leaseDetailsOpen)}></CustomButton>
         </Grid>
       <Grid item container>
           <PropertyCard {...property} modifiable/>

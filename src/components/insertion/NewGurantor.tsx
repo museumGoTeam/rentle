@@ -3,19 +3,9 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import ImageUploader from "../ImageUploader";
-import FormContainer from "../FormContainer";
 import CustomSelect from "../CustomSelect";
-import CustomButton from "../CustomButton";
-import {
-    GuarantorForm,
-  LocationForm,
-  OccupantForm,
-  PropertyForm,
-} from "../../pages/types/form";
-import axios from "axios";
+import {GuarantorForm} from "../../pages/types/form";
 import NumberInput from "../NumberInput";
-import { initialOccupantForm } from "../../constants/initstate";
-import DateField from "../DateField";
 
 const useStyles = makeStyles((theme) => ({
   line: {

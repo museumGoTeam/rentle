@@ -15,14 +15,14 @@ type CustomStepperProps = {
 
 const CustomStepper: React.FC<CustomStepperProps> = ({ steps, stepNodes, onSubmit }) => {
   const [activeStep, setActiveStep] = React.useState<number>(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
+  const [skipped] = React.useState(new Set<number>());
   const history = useHistory()
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step);
   };
 
-  const isLastStep = () => activeStep == (steps.length - 1)
+  const isLastStep = () => activeStep === (steps.length - 1)
 
   const handleNext = () => {
     setActiveStep((prevState) => prevState + 1);

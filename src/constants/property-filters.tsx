@@ -21,6 +21,11 @@ const propertyFilters: Filter[] = [
         "selected": false
     },
     {
+        "label": "Chambres",
+        "icon": <ApartmentIcon />,
+        "selected": false
+    },
+    {
         "label": "Locataires",
         "icon": <PersonIcon />,
         "selected": false

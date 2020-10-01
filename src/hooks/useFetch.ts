@@ -23,6 +23,7 @@ export default <T>(options: FetchOptions) => {
           break;
         case "POST":
           await axios.post(options.uri, options.data)
+          break;
         default:
           return { data: [] };
       }
