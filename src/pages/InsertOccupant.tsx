@@ -9,6 +9,8 @@ import NewGurantor from "../components/insertion/NewGurantor";
 import Writelease from "../components/insertion/WriteLease";
 import NewOccupant from "../components/insertion/NewOccupant";
 import { useParams, useHistory } from "react-router-dom";
+import { RentleResponse } from "./types";
+import { message } from "antd";
 
 
 const InsertOccupant = () => {
@@ -34,8 +36,11 @@ const InsertOccupant = () => {
     else setLeaseForm({ ...leaseForm, [name]: value });
   };
 
-  const onSubmit = () => {
-    axios.post('http://localhost:5000/api/occupants', {...occupantForm, guarantor: guarantorForm, lease: leaseForm})
+  const onSubmit = async () => {
+    message.loading("Insertion du locataire ...")
+    const res = ( await axios.post<RentleResponse>('http://localhost:5000/api/occupants', {...occupantForm, guarantor: guarantorForm, lease: leaseForm})).data
+    res.success ? message.success(res.message) : message.error(res.message)
+    returnToHomePage()
   };
 
   return (

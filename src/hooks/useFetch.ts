@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { RentleResponse } from "../pages/types";
 
 type FetchOptions = {
   uri: string;
@@ -28,7 +29,7 @@ export default <T>(options: FetchOptions) => {
           return { data: [] };
       }
     };
-    fetch();
+    if (options.method === "GET" || options.method === "POST") fetch();
 // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); 
 
@@ -36,15 +37,20 @@ export default <T>(options: FetchOptions) => {
 };
 
 
-export const useLazyFetch = <T>(options: FetchOptions): [() => Promise<void>, {data: T | undefined, loading: boolean}] => {
+export const useLazyFetch = <T>(options: FetchOptions): [() => Promise<void | RentleResponse>, {data: T | undefined, loading: boolean}] => {
   const [res, setRes] = React.useState<{data: T | undefined, loading: boolean}>({data: undefined, loading: true})
 
   return [async () => {
+    let res;
     switch(options.method) {
       case "GET":
-        const res = await axios.get(options.uri)
+        console.log(options)
+        res = await axios.get(options.uri)
         setRes({data: res.data, loading: false})
         break;
+      case "DELETE":
+        res = await axios.delete<RentleResponse>(options.uri, options.data)
+        return {success: res.data.success, message: res.data.message}
     }
   }, {data: res.data, loading: res.loading}]
 

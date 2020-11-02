@@ -70,3 +70,8 @@ export interface Location {
     city: string,
     country: string
 }
+
+export interface RentleResponse {
+    success: boolean,
+    message: string
+}

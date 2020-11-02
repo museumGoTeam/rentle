@@ -2,10 +2,12 @@ import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import {message} from 'antd'
 import CardMedia from "./CardMedia";
 import CustomButton from "../CustomButton";
-import { Property } from "../../pages/types";
+import { Occupant, Property } from "../../pages/types";
 import { Link } from "react-router-dom";
+import { useLazyFetch } from "../../hooks/useFetch";
 
 const useStyles = makeStyles((theme) => ({
   root: ({ hasDivider, isModifiable }: { hasDivider: boolean, isModifiable: boolean | undefined }) => ({
@@ -61,6 +63,7 @@ const PropertyCard: React.FC<PropertyCardProps & Property> = ({
   ...property
 }) => {
   const classes = useStyles({ hasDivider, isModifiable });
+  const [leasedBy, setLeasedBy] = React.useState<Occupant | undefined>(property.leasedBy)
   const {
     id,
     type,
@@ -71,9 +74,20 @@ const PropertyCard: React.FC<PropertyCardProps & Property> = ({
     sizeLivingRoom,
     sizeKitchen,
     charges,
-    leasedBy,
   } = property;
   const { street, zipcode, city, country } = property.address;
+  const [deleteOccupant] = useLazyFetch({uri: `http://localhost:5000/api/occupants/${leasedBy?.id}/delete`, method: "DELETE" })
+  
+  const handleDelete = async () => {
+    message.loading("Supression du locataire ...")
+    const res = await deleteOccupant()
+    if (res && res.success) {
+      message.success(res.message)
+      setLeasedBy(undefined)
+    } else if (res) {
+      message.error(res.message)
+    }
+  }
 
   return (
     <Grid item container spacing={2} className={classes.root}>
@@ -130,7 +144,8 @@ const PropertyCard: React.FC<PropertyCardProps & Property> = ({
 
           <CustomButton
             label={leasedBy ? "Supprimer le locataire" : "Ajouter un Locataire"}
-            to={`/property/newOccupant/${id}`}
+            to={leasedBy ? undefined : `/property/newOccupant/${id}`}
+            onClick={() => leasedBy && handleDelete()}
             style={{ marginLeft: 8, backgroundColor: leasedBy ? "red" : "" }}
           />
         </Grid>
